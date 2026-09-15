@@ -1,0 +1,2 @@
+id,name,location,state,region,coordinates,status,people,attendance,alternativeWork,hazards,dependencies,propertyReference,validation,validatedAt,confidence,notes
+DEMO-001,DEMO Example Centre,Synthetic location,VIC,DEMO catchment,,UNKNOWN,120,DEMO variable,DEMO remote work,storm; flood,DEMO power; telecommunications,Not operational,DEMO,,UNKNOWN,Synthetic training data only

@@ -1,0 +1,32 @@
+name: Build Enterprise Pages release
+on:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build-pages:
+    runs-on: ${{ github.server_url == 'https://github.com' && 'ubuntu-latest' || 'self-hosted' }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Provision Node on GitHub.com
+        if: github.server_url == 'https://github.com'
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Provision browser on GitHub.com
+        if: github.server_url == 'https://github.com'
+        run: npx playwright install --with-deps chromium
+      - run: npm run check
+      - name: Package static Pages tree
+        run: node scripts/package-pages.mjs
+      - name: Handover instruction
+        run: echo "Validated Pages tree is in dist and artifacts/pages-static.tar.gz. Use the Enterprise-compatible branch publishing procedure in docs/DEPLOYMENT.md."
+      - name: Upload static build on GitHub.com
+        if: github.server_url == 'https://github.com'
+        uses: actions/upload-artifact@v4
+        with:
+          name: pages-static-build
+          path: dist/
+          include-hidden-files: true

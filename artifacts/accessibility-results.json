@@ -1,0 +1,22 @@
+[
+  {
+    "url": "http://127.0.0.1:4173/",
+    "violations": [],
+    "passes": 20,
+    "incomplete": [
+      "color-contrast"
+    ]
+  },
+  {
+    "url": "http://127.0.0.1:4173/",
+    "violations": [],
+    "passes": 23,
+    "incomplete": []
+  },
+  {
+    "url": "http://127.0.0.1:4173/",
+    "violations": [],
+    "passes": 23,
+    "incomplete": []
+  }
+]
